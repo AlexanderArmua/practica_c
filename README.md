@@ -6,8 +6,10 @@
 - Correr Valgrind para ver Memory Leak: ```valgrind --leak-check=yes ./PROGRAMA_debug.exe```
 
 ## TODO:
+#### Implementar "C Unit"
+#### Integrar con Travis o Jenkins
 ### Implementar operaciones Disponibles por definicion para ADT
-#### List:
+#### 01- List:
 - ```get()```
 - ```insert()```
 - ```remove()```
@@ -17,7 +19,7 @@
 - ```isEmpty()```
 - ```isFull()```
 
-#### Stack:
+#### 02- Stack:
 - ```push()```
 - ```pop() //LIFO```
 - ```peek()``` (Elemento en la cima sin removerlo)
@@ -25,7 +27,7 @@
 - ```isEmpty()```
 - ```isFull()```
 
-#### Queue
+#### 03- Queue
 - ```enqueue()``` (Nuevo elemento al final)
 - ```dequeue()``` (Remover y retornar primer elemento)
 - ```peek()``` (Primer elemento sin removerlo)
