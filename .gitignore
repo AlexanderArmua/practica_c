@@ -1,0 +1,4 @@
+*.exe
+ANNOTATIONS.md
+*.out
+.vscode
