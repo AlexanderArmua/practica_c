@@ -1,66 +1,69 @@
 /* 
-    Pasos:
-    1- Crear pointer para saber que hay en front y rear.
-    2- Colocar todo en -1 al iniciar.
-    3- Incrementar en 1 el valor de "rear" cuando se agrega elemento.
-    4- Retornar el valor de front al quitar un elemento e incrementar 
-    en 1 elvalor de front al usar dequeue.
-    5- Antes de agregar un elemento revisar si hay espacio.
-    6- Antes de remover un elemento revisar si existen elementos.
-    7- Asegurarnos de que al remover todos los elementos resetear el 
-    front y rear a -1 y agregar el valor de 0 a Front al hacer primer 
-    enqueue
-
-    Operaciones:
-    - ```enqueue()``` (Nuevo elemento al final)             -- OK
-    - ```dequeue()``` (Remover y retornar primer elemento)  -- OK
-    - ```peek()``` (Primer elemento sin removerlo)          -- OK
-    - ```size()```                                          -- OK
-    - ```isEmpty()```                                       -- OK
-    - ```isFull()```
+    Operations Done:
+    - enqueue(int)
+    - dequeue()
+    - peek()   
+    - size()   
+    - isEmpty()
+    - isFull() 
+    
+    Todo:
+    - InitQueue (More than one Queue at the same time).
+    - Change Array for Pointers
+    - Change all the functions for Pointers
+    - Resize
+    - Free Memory
+    - PrintMenu (It could be for all types)
+    - Read data from keyboard.
+    - Display all the Queue or all the Queues
 */
 #include "00_helper.c"
 #define SIZE_QUEUE 5
 #define VALUE_INIT -1
 
-int rear = VALUE_INIT; // Posicion del ultimo elemento en la Queue
-int front = VALUE_INIT; // Posicion primer elemento a tomar
+int rear = VALUE_INIT;
+int front = VALUE_INIT;
 int elementos[SIZE_QUEUE] = {VALUE_INIT};
 
-int estaLlena() {
-    return rear == SIZE_QUEUE - 1;
+int itsNew();
+void enqueue(int); 
+int dequeue();
+int peek();
+int size();
+int isEmpty();
+int isFull();
+
+int main(int argc, char const *argv[])
+{
+    return 0;
 }
 
-int noFueIniciada() {
+int itsNew() {
     return front == VALUE_INIT;
 }
 
 void enqueue(int value) {
     // Si hay espacio, agregamos un elemento.
-    if (estaLlena()) {
+    if (isFull()) {
         // Esta lleno
         imprimirError();
         printf("El Queue está lleno, no se puede agregar elementos.\n");
     } else {
-        if (noFueIniciada()) {
+        if (itsNew()) {
             // Es el primer elemento que se agrega a la queue, cambio el front.
             front = 0;
         }
         rear++;
         elementos[rear] = value;
-        imprimirOk();
-        printf("Se agrego el \"%d\" correctamente.\n", value);
     }
 }
 
 int dequeue() {
-    if (noFueIniciada()) {
+    if (itsNew()) {
         imprimirError();
         printf("No hay elementos para obtener.\n");
     } else {
         const int primerElemento = elementos[front];
-        imprimirInfo();
-        printf("Se eliminó el valor \"%d\".\n", primerElemento);
         // El front es siempre 0, pero el ultimo elemento varia
         rear--;
         if (front > rear) {
@@ -77,18 +80,23 @@ int dequeue() {
 }
 
 int peek() {
-    if (noFueIniciada()) {
+    if (itsNew()) {
         imprimirError();
         printf("No hay elementos para obtener.\n");
     } else {
-        imprimirInfo();
         const int primerElemento = elementos[front];
-        printf("Se toma el primer elemento sin eliminar %d\n", primerElemento);
         return primerElemento;
     }
 }
 
 int size() {
+    // front = -1 ; rear = -1 ; ==> 0 (Initlialized)
+    // front = 0 ; rear = 0 ;   ==> 1 (First Element)
+    // front = 0 ; rear = 1 ;   ==> 2
+    // front = 0 ; rear = 2 ;   ==> 3
+    // front = 0 ; rear = 3 ;   ==> 4
+    // front = 0 ; rear = 4 ;   ==> 5
+
     int size;
     if (rear == -1) {
         size = 0;
@@ -98,34 +106,22 @@ int size() {
         size = (rear - front) + 1;
     }
 
-    imprimirInfo();
-    printf("El tamaño es %d\n", size);
-    
     return size;
 }
 
 int isEmpty() {
-    if (size() == 0) {
-        imprimirError();
-        printf("Esta vacia!\n");
-        return 0;
-    } else {
-        imprimirInfo();
-        printf("Tiene elementos!\n");
-        return 1;
-    }
+    // 0 es false, != 0 es true.
+    return size();
 }
 
-int main(int argc, char const *argv[])
-{
-    isEmpty();
-    enqueue(1);
-    isEmpty();
-    enqueue(1);
-    isEmpty();
-    dequeue();
-    dequeue();
-    isEmpty();
-
-    return 0;
+int isFull() {
+    // const int espacioLibre = (SIZE_QUEUE - size());
+    // (5 - 0) = 5 ==> return 0;
+    // (5 - 1) = 4 ==> return 0;
+    // (5 - 2) = 3 ==> return 0;
+    // (5 - 3) = 2 ==> return 0;
+    // (5 - 4) = 1 ==> return 0;
+    // (5 - 5) = 0 ==> return 1; 
+    
+    return !(SIZE_QUEUE - size());
 }

@@ -1,15 +1,18 @@
-# Es es un proyecto personal para ir aprendiendo C.
+# Personal project for learn "C".
 
-## Comandos Utiles (Bash):
-- Compilar: ```gcc uddt.c -o uddt.exe```
-- Compilar para evaluar Memory Leak con Valgrind: ```gcc PROGRAMA.c -o PROGRAMA_debug.exe -g```
-- Correr Valgrind para ver Memory Leak: ```valgrind --leak-check=yes ./PROGRAMA_debug.exe```
+## Utils (Bash):
+- Compile: ```gcc PROGRAM_NAME.c -o PROGRAM_NAME.exe```
+- Compile including debbuging information for Valgrind: ```gcc PROGRAM_NAME.c -o PROGRAM_NAME_DEBUG.exe -g```
+- Run Valgrind for look Memory Leaks: ```valgrind --leak-check=yes ./PROGRAM_NAME_DEBUG.exe```
 
 ## TODO:
-#### Implementar "C Unit"
-#### Integrar con Travis o Jenkins
-### Implementar operaciones Disponibles por definicion para ADT
-#### 01- List:
+#### Add "C Unit"
+#### Add Travis o Jenkins
+#### Add the following
+#### 01- Queue (Done):
+- It can be better :)
+
+#### 02- List:
 - ```get()```
 - ```insert()```
 - ```remove()```
@@ -19,7 +22,7 @@
 - ```isEmpty()```
 - ```isFull()```
 
-#### 02- Stack:
+#### 03- Stack:
 - ```push()```
 - ```pop() //LIFO```
 - ```peek()``` (Elemento en la cima sin removerlo)
@@ -27,10 +30,11 @@
 - ```isEmpty()```
 - ```isFull()```
 
-#### 03- Queue
-- ```enqueue()``` (Nuevo elemento al final)
-- ```dequeue()``` (Remover y retornar primer elemento)
-- ```peek()``` (Primer elemento sin removerlo)
+## Done: 
+#### 01- Queue
+- ```enqueue()``` 
+- ```dequeue()```
+- ```peek()```
 - ```size()```
 - ```isEmpty()```
 - ```isFull()```
