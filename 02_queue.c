@@ -12,9 +12,9 @@
     enqueue
 
     Operaciones:
-    - ```enqueue()``` (Nuevo elemento al final)
-    - ```dequeue()``` (Remover y retornar primer elemento)
-    - ```peek()``` (Primer elemento sin removerlo)
+    - ```enqueue()``` (Nuevo elemento al final)             -- OK
+    - ```dequeue()``` (Remover y retornar primer elemento)  -- OK
+    - ```peek()``` (Primer elemento sin removerlo)          -- OK
     - ```size()```
     - ```isEmpty()```
     - ```isFull()```
@@ -35,7 +35,7 @@ int noFueIniciada() {
     return front == VALUE_INIT;
 }
 
-void enQueue(int value) {
+void enqueue(int value) {
     // Si hay espacio, agregamos un elemento.
     if (estaLlena()) {
         // Esta lleno
@@ -53,7 +53,7 @@ void enQueue(int value) {
     }
 }
 
-int deQueue() {
+int dequeue() {
     if (noFueIniciada()) {
         imprimirError();
         printf("No hay elementos para obtener.\n");
@@ -76,17 +76,32 @@ int deQueue() {
     }
 }
 
+int peek() {
+    if (noFueIniciada()) {
+        imprimirError();
+        printf("No hay elementos para obtener.\n");
+    } else {
+        imprimirInfo();
+        const int primerElemento = elementos[front];
+        printf("Se toma el primer elemento sin eliminar %d\n", primerElemento);
+        return primerElemento;
+    }
+}
+
 int main(int argc, char const *argv[])
 {
-    enQueue(1);
-    enQueue(1);
-    enQueue(1);
-    enQueue(2);
-    enQueue(3);
-    enQueue(4);
-    enQueue(5);
-    deQueue();
-    enQueue(6);
-    deQueue();
+    enqueue(1);
+    enqueue(1);
+    enqueue(1);
+    enqueue(2);
+    enqueue(3);
+    enqueue(4);
+    enqueue(5);
+    dequeue();
+    enqueue(6);
+    dequeue();
+    peek();
+    peek();
+    peek();
     return 0;
 }
