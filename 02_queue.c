@@ -16,7 +16,7 @@
     - ```dequeue()``` (Remover y retornar primer elemento)  -- OK
     - ```peek()``` (Primer elemento sin removerlo)          -- OK
     - ```size()```                                          -- OK
-    - ```isEmpty()```
+    - ```isEmpty()```                                       -- OK
     - ```isFull()```
 */
 #include "00_helper.c"
@@ -104,31 +104,28 @@ int size() {
     return size;
 }
 
+int isEmpty() {
+    if (size() == 0) {
+        imprimirError();
+        printf("Esta vacia!\n");
+        return 0;
+    } else {
+        imprimirInfo();
+        printf("Tiene elementos!\n");
+        return 1;
+    }
+}
+
 int main(int argc, char const *argv[])
 {
-    size();
+    isEmpty();
     enqueue(1);
-    size();
+    isEmpty();
     enqueue(1);
-    size();
-    enqueue(1);
-    size();
-    enqueue(2);
-    size();
-    enqueue(3);
-    size();
-    enqueue(4);
-    size();
-    enqueue(5);
-    size();
+    isEmpty();
     dequeue();
-    size();
-    enqueue(6);
-    size();
     dequeue();
-    peek();
-    peek();
-    peek();
-    size();
+    isEmpty();
+
     return 0;
 }
