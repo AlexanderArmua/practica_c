@@ -15,7 +15,7 @@
     - ```enqueue()``` (Nuevo elemento al final)             -- OK
     - ```dequeue()``` (Remover y retornar primer elemento)  -- OK
     - ```peek()``` (Primer elemento sin removerlo)          -- OK
-    - ```size()```
+    - ```size()```                                          -- OK
     - ```isEmpty()```
     - ```isFull()```
 */
@@ -88,20 +88,47 @@ int peek() {
     }
 }
 
+int size() {
+    int size;
+    if (rear == -1) {
+        size = 0;
+    } else if (rear == 0) {
+        size = 1;
+    } else {
+        size = (rear - front) + 1;
+    }
+
+    imprimirInfo();
+    printf("El tamaño es %d\n", size);
+    
+    return size;
+}
+
 int main(int argc, char const *argv[])
 {
+    size();
     enqueue(1);
+    size();
     enqueue(1);
+    size();
     enqueue(1);
+    size();
     enqueue(2);
+    size();
     enqueue(3);
+    size();
     enqueue(4);
+    size();
     enqueue(5);
+    size();
     dequeue();
+    size();
     enqueue(6);
+    size();
     dequeue();
     peek();
     peek();
     peek();
+    size();
     return 0;
 }
