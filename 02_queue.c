@@ -25,16 +25,22 @@ int rear = VALUE_INIT;
 int front = VALUE_INIT;
 int elementos[SIZE_QUEUE] = {VALUE_INIT};
 
+struct QueueElement {
+    int value;
+    struct QueueElement *next;
+};
+
 int itsNew();
-void enqueue(int); 
+void enqueue(int newElement); 
 int dequeue();
 int peek();
 int size();
 int isEmpty();
 int isFull();
 
-int main(int argc, char const *argv[])
-{
+void setSizeMax(int sizeMax);
+
+int main(int argc, char const *argv[]) {
     return 0;
 }
 
