@@ -27,29 +27,46 @@ int main(int argc, char const *argv[]) {
     struct Nodo *tail = &head;
 
     int valor = 0;
-    int contador = 0;
-    do {
-        printf("Ingrese el valor nº %d: ", ++contador);
+
+    for (int i = 0; i < 5; i++) {
+        printf("---Ingrese el valor nº %d: ", i);
         scanf("%d", &valor);
 
-        if (valor) {
-            tail->valor = valor;
-            tail->id = contador;
-            tail->haySgt = 1;
-            tail->sgt = malloc(sizeof(struct Nodo));
+        tail->valor = valor;
+        tail->id = i;
+        
 
+        if ((i+1) < 5) {
+            tail->haySgt = 1;
             tail = (struct Nodo*) &tail->sgt;
+            tail->sgt = malloc(sizeof(struct Nodo));
         } else {
             tail->haySgt = 0;
+            tail->sgt = NULL;
         }
+    }
 
-    } while(valor);
 
     struct Nodo *actual = &head;
-    while(actual->haySgt) {
-        printf("\t- Valor: %d \t Id: %d\n", actual->valor, actual->id);
-        actual = (struct Nodo*) &actual->sgt;
+    printf("\t| VALUE\t\t|   ID\t|   SIGUIENTE\t|\n");
+    while(actual != NULL) {
+        printf("\t| Valor: %d ", actual->valor);
+        printf("\t| Id: %d", actual->id);
+        printf("\t| Sgt: ");
+        if (actual->haySgt) {
+            printf("True\t|\n");
+        } else {
+            printf("False\t|\n");
+        }
+        
+        if (actual->haySgt) {
+            actual = (struct Nodo*) &actual->sgt;
+        } else {
+            actual = NULL;
+        }
     }
+
+    printf("Fin del programa");
 
     return 0;
 } 
