@@ -1,4 +1,4 @@
-#include<stdio.h>
+#include "00_helper.c"
 #include<stdlib.h>
 
 struct Nodo {
@@ -8,26 +8,15 @@ struct Nodo {
     struct Nodo *sgt;
 };
 
+void printDataNodo(const struct Nodo *nodo);
+
 int main(int argc, char const *argv[]) {
-/*
-    int valorA = 20;
-    int *pValorA = &valorA;
-
-    struct Nodo *pila;
-
-    pila->valor = 1;
-    pila->sgt = malloc(sizeof(struct Nodo));
-
-    pila->sgt->valor = 2;
-
-    printf("Valor 01: %d \n", pila->valor);
-    printf("Valor 02: %d \n", pila->sgt->valor);
-*/
     struct Nodo head;
     struct Nodo *tail = &head;
 
     int valor = 0;
 
+    // Antes pedia en un do, while peeero en mi desesperacion probé limitarlo.
     for (int i = 0; i < 5; i++) {
         printf("---Ingrese el valor nº %d: ", i);
         scanf("%d", &valor);
@@ -35,7 +24,6 @@ int main(int argc, char const *argv[]) {
         tail->valor = valor;
         tail->id = i;
         
-
         if ((i+1) < 5) {
             tail->haySgt = 1;
             tail = (struct Nodo*) &tail->sgt;
@@ -48,16 +36,10 @@ int main(int argc, char const *argv[]) {
 
 
     struct Nodo *actual = &head;
+    int contador = 0;
     printf("\t| VALUE\t\t|   ID\t|   SIGUIENTE\t|\n");
     while(actual != NULL) {
-        printf("\t| Valor: %d ", actual->valor);
-        printf("\t| Id: %d", actual->id);
-        printf("\t| Sgt: ");
-        if (actual->haySgt) {
-            printf("True\t|\n");
-        } else {
-            printf("False\t|\n");
-        }
+        printDataNodo(actual);
         
         if (actual->haySgt) {
             actual = (struct Nodo*) &actual->sgt;
@@ -66,7 +48,20 @@ int main(int argc, char const *argv[]) {
         }
     }
 
+    // Esto nunca se ejecuta...
     printf("Fin del programa");
 
     return 0;
 } 
+
+void printDataNodo(const struct Nodo *nodo) {
+    printf("\t| Valor: %d ", nodo->valor);
+    printf("\t| Id: %d", nodo->id);
+    printf("\t| Sgt: ");
+    if (nodo->haySgt) {
+        printf(ANSI_COLOR_GREEN "True\t" ANSI_COLOR_RESET);
+    } else {
+        printf(ANSI_COLOR_RED "False\t" ANSI_COLOR_RESET);
+    }
+    printf("|\n");
+}
