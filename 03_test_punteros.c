@@ -26,6 +26,7 @@ int main(int argc, char const *argv[]) {
         printf("---Ingrese el valor nº %d: ", ++id);
         scanf("%d", &valor);
 
+        // Corte del do-while
         if (!valor) {
             tail->haySgt = False;
             tail->sgt = NULL;
@@ -35,16 +36,18 @@ int main(int argc, char const *argv[]) {
         if (tail->id) {
             tail->haySgt = True;
             tail->sgt = malloc(sizeof(struct Nodo));
+            
             tail = (struct Nodo*) &tail->sgt;
+            tail->haySgt = False;
         }
         
-        tail->id = id;
-        tail->valor = valor;
+        tail->id = id; // 01
+        tail->valor = valor; // 1
     } while(valor);
 
     struct Nodo *actual = head;
     int contador = 0;
-    printf("\t| VALUE\t\t|   ID\t|   SIGUIENTE\t|\n");
+    printf("\t| VALUE\t\t|   ID\t\t|   SIGUIENTE\t|\n");
     while(actual != NULL) {
         printDataNodo(actual);
 
@@ -66,8 +69,13 @@ int main(int argc, char const *argv[]) {
 
 void printDataNodo(const struct Nodo *nodo) {
     printf("\t| Valor: %d ", nodo->valor);
-    printf("\t| Id: %d", nodo->id);
-    printf("\t| Sgt: ");
+
+    printf("\t| Id: ");
+    if (nodo->id < 10) {
+        printf("0");
+    }
+    printf("%d", nodo->id);
+    printf("\t\t| Sgt: ");
     if (nodo->haySgt) {
         printf(ANSI_COLOR_GREEN "True\t" ANSI_COLOR_RESET);
     } else {
