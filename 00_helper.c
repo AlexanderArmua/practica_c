@@ -19,3 +19,5 @@ void imprimirInfo() {
 void imprimirOk() {
     printf(ANSI_COLOR_GREEN     "OK: "     ANSI_COLOR_RESET);
 }
+
+enum Bool { False, True };

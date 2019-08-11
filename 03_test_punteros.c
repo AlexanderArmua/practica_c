@@ -3,7 +3,7 @@
 
 struct Nodo {
     int valor;
-    int id;
+    unsigned int id;
     int haySgt;
     struct Nodo *sgt;
 };
@@ -11,40 +11,45 @@ struct Nodo {
 void printDataNodo(const struct Nodo *nodo);
 
 int main(int argc, char const *argv[]) {
-    struct Nodo head;
+    struct Nodo head = {0, 0, 0, NULL};
     struct Nodo *tail = &head;
 
     int valor = 0;
 
-    // Antes pedia en un do, while peeero en mi desesperacion probé limitarlo.
-    for (int i = 0; i < 5; i++) {
-        printf("---Ingrese el valor nº %d: ", i);
+    unsigned int id = 1;
+    do {
+        printf("---Ingrese el valor nº %d: ", id++);
         scanf("%d", &valor);
 
-        tail->valor = valor;
-        tail->id = i;
-        
-        if ((i+1) < 5) {
-            tail->haySgt = 1;
-            tail = (struct Nodo*) &tail->sgt;
-            tail->sgt = malloc(sizeof(struct Nodo));
-        } else {
-            tail->haySgt = 0;
+        if (!valor) {
+            tail->haySgt = False;
             tail->sgt = NULL;
+            break;
         }
-    }
 
+        if (tail->id) {
+            tail->haySgt = True;
+            tail->sgt = malloc(sizeof(struct Nodo));
+            tail = (struct Nodo*) &tail->sgt;
+        }
+        
+        tail->id = id;
+        tail->valor = valor;
+    } while(valor);
 
     struct Nodo *actual = &head;
     int contador = 0;
     printf("\t| VALUE\t\t|   ID\t|   SIGUIENTE\t|\n");
     while(actual != NULL) {
         printDataNodo(actual);
-        
+
         if (actual->haySgt) {
-            actual = (struct Nodo*) &actual->sgt;
+            struct Nodo *sgt = (struct Nodo*) &actual->sgt;
+            actual = (struct Nodo*) sgt;
+            // free(sgt);
         } else {
-            actual = NULL;
+            // actual = NULL;
+            break;
         }
     }
 
