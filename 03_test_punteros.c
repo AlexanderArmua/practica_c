@@ -11,14 +11,19 @@ struct Nodo {
 void printDataNodo(const struct Nodo *nodo);
 
 int main(int argc, char const *argv[]) {
-    struct Nodo head = {0, 0, 0, NULL};
-    struct Nodo *tail = &head;
+    struct Nodo *head = malloc(sizeof(struct Nodo)); //= {0, 0, 0, NULL};
+    head->valor = 0;
+    head->id = 0;
+    head->haySgt = False;
+    head->sgt = NULL;
+
+    struct Nodo *tail = head;
 
     int valor = 0;
 
-    unsigned int id = 1;
+    unsigned int id = 0;
     do {
-        printf("---Ingrese el valor nº %d: ", id++);
+        printf("---Ingrese el valor nº %d: ", ++id);
         scanf("%d", &valor);
 
         if (!valor) {
@@ -37,7 +42,7 @@ int main(int argc, char const *argv[]) {
         tail->valor = valor;
     } while(valor);
 
-    struct Nodo *actual = &head;
+    struct Nodo *actual = head;
     int contador = 0;
     printf("\t| VALUE\t\t|   ID\t|   SIGUIENTE\t|\n");
     while(actual != NULL) {
@@ -46,7 +51,7 @@ int main(int argc, char const *argv[]) {
         if (actual->haySgt) {
             struct Nodo *sgt = (struct Nodo*) &actual->sgt;
             actual = (struct Nodo*) sgt;
-            // free(sgt);
+            //free(sgt);
         } else {
             // actual = NULL;
             break;
@@ -54,7 +59,7 @@ int main(int argc, char const *argv[]) {
     }
 
     // Esto nunca se ejecuta...
-    printf("Fin del programa");
+    printf("Fin del programa.\n");
 
     return 0;
 } 
