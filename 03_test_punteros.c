@@ -26,7 +26,6 @@ int main(int argc, char const *argv[]) {
         printf("---Ingrese el valor nº %d: ", ++id);
         scanf("%d", &valor);
 
-        // Corte del do-while
         if (!valor) {
             tail->haySgt = False;
             tail->sgt = NULL;
@@ -41,8 +40,8 @@ int main(int argc, char const *argv[]) {
             tail->haySgt = False;
         }
         
-        tail->id = id; // 01
-        tail->valor = valor; // 1
+        tail->id = id;
+        tail->valor = valor;
     } while(valor);
 
     struct Nodo *actual = head;
@@ -54,9 +53,8 @@ int main(int argc, char const *argv[]) {
         if (actual->haySgt) {
             struct Nodo *sgt = actual->sgt;
             actual = (struct Nodo*) sgt;
-            //free(sgt);
+            //TODO: free(sgt) pendiente;
         } else {
-            // actual = NULL;
             break;
         }
     }

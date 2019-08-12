@@ -62,7 +62,7 @@ struct Node* deQueue(struct LinkedList *list) {
     list->front = firstElement->next;
     // TODO: free.
 
-    // It`s The End.
+    // If it`s the end.
     if (isEmpty(list)) {
         list->tail = NULL;
     }
