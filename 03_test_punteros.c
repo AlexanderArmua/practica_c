@@ -37,7 +37,7 @@ int main(int argc, char const *argv[]) {
             tail->haySgt = True;
             tail->sgt = malloc(sizeof(struct Nodo));
             
-            tail = (struct Nodo*) &tail->sgt;
+            tail = tail->sgt;
             tail->haySgt = False;
         }
         
@@ -52,7 +52,7 @@ int main(int argc, char const *argv[]) {
         printDataNodo(actual);
 
         if (actual->haySgt) {
-            struct Nodo *sgt = (struct Nodo*) &actual->sgt;
+            struct Nodo *sgt = actual->sgt;
             actual = (struct Nodo*) sgt;
             //free(sgt);
         } else {
