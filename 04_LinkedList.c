@@ -60,9 +60,7 @@ struct Node* deQueue(struct LinkedList *list) {
 
     struct Node* firstElement = list->front;
     list->front = firstElement->next;
-    free(firstElement);
 
-    // If it`s the end.
     if (isEmpty(list)) {
         list->tail = NULL;
     }
@@ -82,7 +80,6 @@ struct Node* getTail(const struct LinkedList *list) {
     return list->tail;
 }
 
-// TODO: Podria controlarse el tamaño mediante enQueue y deQueue en una variable size.
 int size(const struct LinkedList *list) {
     if (isEmpty(list)) {
         return 0;
@@ -99,6 +96,14 @@ int size(const struct LinkedList *list) {
     return length;
 }
 
+void freeAll(struct LinkedList *list) {
+    while (list->front != NULL) {
+        free(deQueue(list));
+    }
+
+    free(list);
+}
+
 int main(int argc, char const *argv[]) {
     struct LinkedList* list1 = newLinkedList();
     
@@ -112,6 +117,7 @@ int main(int argc, char const *argv[]) {
         }
     } while(value);
 
+    struct Node* deQueued; 
     int opcion = 0;
     do {
         printf("Choose: \n");
@@ -128,7 +134,9 @@ int main(int argc, char const *argv[]) {
                 printDataNodo(peek(list1));
                 break;
             case 2:
-                printDataNodo(deQueue(list1));
+                deQueued = deQueue(list1);
+                printDataNodo(deQueued);
+                free(deQueued);
                 break;
             case 3:
                 printf("--- Write the number Nº %d: ", ++index);
@@ -141,7 +149,7 @@ int main(int argc, char const *argv[]) {
                 printf("- Size: %d\n", size(list1));
                 break;
             default:
-                free(list1);
+                freeAll(list1);
                 break;
         }
 
