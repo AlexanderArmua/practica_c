@@ -9,25 +9,9 @@
 #### Add "C Unit"
 #### Add Travis o Jenkins
 #### Add the following
-#### 00- Pointers
-```
----Ingrese el valor nº 0: 1
----Ingrese el valor nº 1: 2
----Ingrese el valor nº 2: 3
----Ingrese el valor nº 3: 4
----Ingrese el valor nº 4: 5
-        | VALUE         |   ID  |   SIGUIENTE   |
-        | Valor: 1      | Id: 0 | Sgt: True     |
-        | Valor: 2      | Id: 1 | Sgt: True     |
-        | Valor: 3      | Id: 2 | Sgt: True     |
-        | Valor: 4      | Id: 3 | Sgt: True     |
-        | Valor: 5      | Id: 4 | Sgt: False    |
-```
-__*** stack smashing detected ***: <unknown> terminated__
-__Aborted (core dumped)__
 
-#### 01- Queue (Done):
-- It can be better :)
+#### 01-LinkedList (Done):
+- Save structs, strings, etc.
 
 #### 02- List:
 - ```get()```

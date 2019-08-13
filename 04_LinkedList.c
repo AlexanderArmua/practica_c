@@ -60,7 +60,7 @@ struct Node* deQueue(struct LinkedList *list) {
 
     struct Node* firstElement = list->front;
     list->front = firstElement->next;
-    // TODO: free.
+    free(firstElement);
 
     // If it`s the end.
     if (isEmpty(list)) {
@@ -119,6 +119,7 @@ int main(int argc, char const *argv[]) {
         printf("\t-01: peek\n");
         printf("\t-02: deQueue\n");
         printf("\t-03: enQueue\n");
+        printf("\t-04: size\n");
         printf("¿What do you want?:\t");
         scanf("%d", &opcion);
 
@@ -136,7 +137,11 @@ int main(int argc, char const *argv[]) {
                     enQueue(list1, value);
                 }
                 break;
+            case 4:
+                printf("- Size: %d\n", size(list1));
+                break;
             default:
+                free(list1);
                 break;
         }
 
