@@ -68,6 +68,14 @@ struct Node* deQueue(struct LinkedList *list) {
     return firstElement;
 }
 
+int deQueueValue(struct LinkedList *list) {
+    struct Node* deQueued = deQueue(list);
+    int const valueReturn = deQueued->value;
+    free(deQueued);
+
+    return valueReturn;
+}
+
 struct Node* peek(const struct LinkedList *list) {
     if (isEmpty(list)) {
         return NULL;
@@ -104,19 +112,37 @@ void freeAll(struct LinkedList *list) {
     free(list);
 }
 
+/*
 int main(int argc, char const *argv[]) {
     struct LinkedList* list1 = newLinkedList();
     
-    int value = 0;
+    return 0;
+}*/
+
+void callToAddNumbers(struct LinkedList* lista) {
     int index = 0;
+    int value = 0;
     do {
         printf("--- Write the number Nº %d: ", ++index);
         scanf("%d", &value);
         if (value) {
-            enQueue(list1, value);
+            enQueue(lista, value);
         }
     } while(value);
+}
 
+void showAllLinkedList(struct LinkedList* lista) {
+    struct Node* deQueued; 
+    do {
+        deQueued = deQueue(lista);
+        printDataNodo(deQueued);
+        free(deQueued);
+    } while(deQueued->next);
+}
+
+void callWhatDoYouWant(struct LinkedList* lista) {
+    int value = 0;
+    int index = 0;
     struct Node* deQueued; 
     int opcion = 0;
     do {
@@ -125,16 +151,17 @@ int main(int argc, char const *argv[]) {
         printf("\t-01: peek\n");
         printf("\t-02: deQueue\n");
         printf("\t-03: enQueue\n");
-        printf("\t-04: size\n");
+        printf("\t-04: deQueueAll\n");
+        printf("\t-05: size\n");
         printf("¿What do you want?:\t");
         scanf("%d", &opcion);
 
         switch (opcion) {
             case 1:
-                printDataNodo(peek(list1));
+                printDataNodo(peek(lista));
                 break;
             case 2:
-                deQueued = deQueue(list1);
+                deQueued = deQueue(lista);
                 printDataNodo(deQueued);
                 free(deQueued);
                 break;
@@ -142,21 +169,22 @@ int main(int argc, char const *argv[]) {
                 printf("--- Write the number Nº %d: ", ++index);
                 scanf("%d", &value);
                 if (value) {
-                    enQueue(list1, value);
+                    enQueue(lista, value);
                 }
                 break;
             case 4:
-                printf("- Size: %d\n", size(list1));
+                showAllLinkedList(lista);
+                break;
+            case 5:
+                printf("- Size: %d\n", size(lista));
                 break;
             default:
-                freeAll(list1);
+                freeAll(lista);
                 break;
         }
 
     } while (opcion);
-
-    return 0;
-} 
+}
 
 void printDataNodo(const struct Node *node) {
     if (node == NULL) {
